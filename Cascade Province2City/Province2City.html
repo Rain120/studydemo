@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>城市级联</title>
+		<meta charset="utf-8"/>
+		<script type="text/javascript">
+			var provinceArr = new Array();	
+			provinceArr[0] = "福建省";
+			provinceArr[1] = "江西省";
+			provinceArr[2] = "广东省";
+			
+			var cityArr = new Array();
+			cityArr[0] = new Array();	
+			cityArr[0][0] = "厦门市";
+			cityArr[0][1] = "福州市";
+			cityArr[0][2] = "潮州市";
+
+			cityArr[1] = new Array();
+			cityArr[1][0] = "南昌市";
+			cityArr[1][1] = "吉安市";
+			cityArr[1][2] = "赣州市";
+			
+			cityArr[2] = new Array();
+			cityArr[2][0] = "广州市";
+			cityArr[2][1] = "深圳市";
+			cityArr[2][2] = "东莞市";
+
+			function changeCity(obj) {
+				var provinces = document.getElementById("province");
+				var citys = document.getElementById("city");
+				citys.options.length = 0;
+				var pvalue = provinces.options[provinces.selectedIndex].value;
+				// alert(pvalue);
+				if(pvalue == -1){
+					citys.options[citys.options.length] = new Option("请选择城市", -1);
+				}else{
+						for(var i=0;i<cityArr[pvalue].length;i++){
+						var text = cityArr[pvalue][i];
+						// alert(text);
+						var value = i;
+						citys.options[i] = new Option(text, value);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<select  id="province" onchange="changeCity(this)">
+				<option value="-1">--请选择省份--</option>
+				<script type="text/javascript">
+					for(var i = 0; i < provinceArr.length; i++) {
+						document.write("<option value=  " + i + " > " + provinceArr[i] + "</option>");
+					}
+				</script>
+			</select>
+			<select id="city">
+				<option value="-1">--请选择城市--</option>
+			</select>
+		</div>
+	</body>
+</html>
